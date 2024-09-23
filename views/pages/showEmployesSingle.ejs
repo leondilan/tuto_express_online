@@ -1,0 +1,30 @@
+<%- include('../component/header') %>
+
+    <main class="container my-3">
+        <h3 class="fs-3 text-center">Update un employe</h3>
+        <section class="row d-flex justify-content-center">
+            <div class="col-md-8">
+                <form action="/employes/<%= employe._id%>?_method=PUT" method="POST">
+                    <div class="mb-3">
+                      <label for="nom" class="form-label">Nom</label>
+                      <input type="text" class="form-control" id="nom" name="nom" value="<%= employe.name %>">
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" value="<%= employe.email %>">
+                    </div>
+                    <div class="mb-3">
+                      <label for="tel" class="form-label">Telephone</label>
+                      <input type="tel" class="form-control" id="tel" name="tel" value="<%= employe.tel %>">
+                    </div>
+                    <div class="mb-3">
+                      <label for="adress" class="form-label">Adresse</label>
+                      <input type="text" class="form-control" id="adress" name="adress" value="<%= employe.adress %>">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Actualiser</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+<%- include('../component/footer') %>

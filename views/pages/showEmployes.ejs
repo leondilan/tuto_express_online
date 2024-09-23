@@ -1,0 +1,93 @@
+<%- include('../component/header') %>
+
+    <main class="container my-3"></main>
+        <h2 class="fs-3 text-center">Tous les employes</h2>
+        <section class="row d-flex justify-content-center">
+            <div class="col-md-10">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Créer un employe
+                </button>
+                <% if (messages.success) { %>
+                  <p class="text-success"><%= messages.success %></p>
+                <% } %>
+                <div class="table-responsive my-3">
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nom</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Tel</th>
+                          <th scope="col">Adress</th>
+                          <th scope="col">Image</th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% employes.forEach(function(employe){ %>
+                          <tr>
+                            <td><%= employe.name %></td>
+                            <td><%= employe.email %></td>
+                            <td><%= employe.tel %></td>
+                            <td><%= employe.adress %></td>
+                            <td>
+                              <img src="/images/employes/<%= employe.nomimage %>" class="img-thumbnail" width="50" height="50" alt="...">
+                            </td>
+                            <td>
+                              <a href="/employes/<%= employe._id %>" class="btn btn-primary">
+                                Modifier
+                              </a>
+                              <form 
+                                action="/employes/<%= employe._id %>?_method=DELETE" 
+                                method="POST"
+                                onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet employe ?')"
+                              >
+                                <button type="submit" class="btn btn-danger">
+                                  Supprimer
+                                </button>
+                              </form>
+                            </td>
+                          </tr>
+                        <% }); %>
+                      </tbody>
+                  </table>
+                </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Créer un employe</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/employes" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                              <label for="nom" class="form-label">Nom</label>
+                              <input type="text" class="form-control" id="nom" name="nom">
+                            </div>
+                            <div class="mb-3">
+                              <label for="email" class="form-label">Email</label>
+                              <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="mb-3">
+                              <label for="tel" class="form-label">Telephone</label>
+                              <input type="tel" class="form-control" id="tel" name="tel">
+                            </div>
+                            <div class="mb-3">
+                              <label for="adress" class="form-label">Adresse</label>
+                              <input type="text" class="form-control" id="adress" name="adress">
+                            </div>
+                            <div class="mb-3">
+                              <label for="image" class="form-label">Image</label>
+                              <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Valider</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<%- include('../component/footer') %>

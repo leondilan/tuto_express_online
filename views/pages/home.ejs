@@ -1,0 +1,13 @@
+<%- include('../component/header') %>
+
+    <%- include('../component/caroussel') %>
+    <main class="container my-3">
+        <h3 class="fs-3 text-center">Tous les produits</h3>
+        <section class="row d-flex justify-content-center">
+            <% produits.forEach(function(produit){ %>
+                <%- include('../component/cardproduit', {produit: produit}); %>
+            <% }); %>
+        </section>
+    </main>
+
+<%- include('../component/footer') %>

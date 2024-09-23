@@ -1,0 +1,41 @@
+<%- include('../component/header') %>
+
+    <main class="container my-3"></main>
+        <h3 class="fs-3 text-center">Contactez-nous</h3>
+        <section class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <% if (messages.success) { %>
+                    <div class="alert alert-success"><%= messages.success %></div>
+                <% } %>
+                <form action="/contact" method="POST">
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="nom" name="nom">
+                        <%- include('../component/error', {path: 'nom', errors: messages.errors}) %>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                        <%- include('../component/error', {path: 'email', errors: messages.errors}) %>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" name="numero" aria-label="Default select example">
+                            <option value="">Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <%- include('../component/error', {path: 'numero', errors: messages.errors}) %>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Description</label>
+                        <textarea name="description" class="form-control" id="content" rows="3"></textarea>
+                        <%- include('../component/error', {path: 'description', errors: messages.errors}) %>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+<%- include('../component/footer') %>
